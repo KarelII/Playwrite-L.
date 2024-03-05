@@ -12,11 +12,11 @@ test('has title Strength Training & Muscle Building', async ({ page, utils }) =>
 test('menu "home button" works', async ({ page, utils, objectRepository }) => {
   await utils.goToHomepage();
 
-  await objectRepository.app.menuBar.programs.click();
-  await objectRepository.app.menuBar.programs.stronglifts5x5.click();
+  await objectRepository.menuBar.programs.click();
+  await objectRepository.menuBar.programs.stronglifts5x5.click();
 
   await expect(page).toHaveTitle(/Stronglifts 5×5: The Complete Workout Guide/);
 
-  await objectRepository.app.menuBar.homeButton.click();
+  await objectRepository.menuBar.homeButton.click();
   await expect(page).toHaveTitle(/Strength Training & Muscle Building/);
 });

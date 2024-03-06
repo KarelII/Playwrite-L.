@@ -1,11 +1,13 @@
 import { test as base } from '@playwright/test';
 import { ObjectRepository, ObjectRepositoryStructure } from './objectRepository';
 import { Utils } from './utils';
+import { LoginSteps } from './POM/login.steps';
 
 // Declare the types of your fixtures.
 type MyFixtures = {
     app: ObjectRepositoryStructure;
     utils: Utils;
+    login: LoginSteps
 };
 
 // Extend base test by providing "todoPage" and "settingsPage".
@@ -21,5 +23,9 @@ export const test = base.extend<MyFixtures>({
     utils: async ({ page }, use) => {
         await use(new Utils(page));
     },
+
+    login: async ({ page }, use) => {
+        await use(new LoginSteps(page));
+    }
 });
 export { expect } from '@playwright/test';

@@ -1,7 +1,9 @@
-export class Utils {
-    constructor(page) {
-        this.page = page;
+import { Page } from "@playwright/test";
 
+export class Utils {
+    private page: Page;
+    constructor(page: Page) {
+        this.page = page;
     }
 
     async goToHomepage() {

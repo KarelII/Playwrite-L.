@@ -1,23 +1,19 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../src/fixtures';
 
-test('failed login', async ({ page }) => {
+test('failed login', async ({ page, app }) => {
   await page.goto('https://practicetestautomation.com/practice-test-login/');
-  await page.getByLabel('Username').click();
-  await page.getByLabel('Username').fill('student');
-  await page.getByLabel('Password').click();
-  await page.getByLabel('Password').fill('student');
-  await page.getByRole('button', { name: 'Submit' }).click();
-  await expect(page.locator('#error')).toContainText('Your password is invalid!');
+  await app.login.usernameInput.fill('student');
+  await app.login.passwordInput.fill('student');
+  await app.login.submitButton.click();
+  await expect(app.login.error).toContainText('Your password is invalid!');
 });
 
-test('successful login', async ({ page }) => {
+test('successful login', async ({ page, app }) => {
   await page.goto('https://practicetestautomation.com/practice-test-login/');
-  await page.getByLabel('Username').click();
-  await page.getByLabel('Username').fill('student');
-  await page.getByLabel('Password').click();
-  await page.getByLabel('Password').fill('Password123');
-  await page.getByRole('button', { name: 'Submit' }).click();
-  await expect(page.getByRole('heading')).toContainText('Logged In Successfully');
-  await page.getByRole('link', { name: 'Log out' }).click();
-  await expect(page.locator('h2')).toContainText('Test login');
+  await app.login.usernameInput.fill('student');
+  await app.login.passwordInput.fill('Password123');
+  await app.login.submitButton.click();
+  await expect(app.login.heading).toContainText('Logged In Successfully');
+  await app.login.logOutButton.click();
+  await expect(app.login.title).toContainText('Test login');
 })

@@ -10,7 +10,7 @@ type MyFixtures = {
     login: LoginSteps
 };
 
-// Extend base test by providing "todoPage" and "settingsPage".
+// Extend base test 
 // This new "test" can be used in multiple test files, and each of them will get the fixtures.
 export const test = base.extend<MyFixtures>({
     app: async ({ page }, use) => {

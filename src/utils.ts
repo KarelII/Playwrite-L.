@@ -1,5 +1,8 @@
 import { Page } from "@playwright/test";
 
+/**
+ * Utils class holds helper methods that can be used in multiple tests
+ */
 export class Utils {
     private page: Page;
     constructor(page: Page) {
